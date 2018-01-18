@@ -19,5 +19,5 @@ RUN apt-get update && apt-get install -y wget ca-certificates \
 
 COPY --from=build /go/src/app/oauth2_proxy /usr/bin/
 
-ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-CMD [ "/usr/bin/oauth2_proxy", "--upstream=http://0.0.0.0:8080/", "--http-address=0.0.0.0:4180"]
+ENTRYPOINT [ "/usr/bin/dumb-init", "--", "/usr/bin/oauth2_proxy" ]
+CMD [ "--upstream=http://0.0.0.0:8080/", "--http-address=0.0.0.0:4180"]
